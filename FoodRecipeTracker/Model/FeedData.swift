@@ -20,16 +20,18 @@ class User {
     var followers: [User]
     var followed: [User]
     var userRecipes: [Recipe]
+    var email: String
     
-    init(name: String, image: UIImage, user: String, pass: String, nickName: String) {
+    init(name: String, image: UIImage, user: String, pass: String, email: String) {
         self.login = LoginInfo(username: user, password: pass)
         self.image = image
-        self.nickName = nickName
+        self.nickName = user
         self.name = name
         self.dateEntry = Date()
         self.followers = []
         self.followed = []
         self.userRecipes = []
+        self.email = email
     }
     
     func addRecipe(recipe: Recipe) {
@@ -186,7 +188,7 @@ class FeedData {
         image: UIImage(named: "chef")!,
         user: "guest",
         pass: "guestnenha",
-        nickName: "guest"
+        email: "guest.email.com"
     )
     
     var tramnguyen: User = User(
@@ -194,7 +196,7 @@ class FeedData {
         image: UIImage(named: "Screen Shot 2020-04-16 at 12.17.11 AM")!,
         user: "tramn",
         pass: "tramnenha",
-        nickName: "tramn"
+        email: "tramn@berkeley.edu"
     )
 
     var anton: User = User(
@@ -202,7 +204,7 @@ class FeedData {
         image: UIImage(named: "80670243_2591624214401817_6146746027673124864_n")!,
         user: "anton",
         pass: "antonnenha",
-        nickName: "aton18"
+        email: "aton18@berkeley.edu"
     )
 
     var recipe1: Recipe = Recipe(
