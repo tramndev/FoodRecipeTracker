@@ -34,10 +34,6 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
 
             // configure TrendingTableCell
             let recipes = feed.sortRecipeFollowing(method: "user")
-            for r in recipes {
-                print(r.name)
-            }
-            print(indexPath.row)
             let currRecipe = recipes[indexPath.row]
 
             cell.userImage.image = currRecipe.owner?.image
