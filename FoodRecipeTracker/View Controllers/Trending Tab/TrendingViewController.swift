@@ -24,7 +24,8 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feed.recipes.count
+        let recieps = feed.sortRecipeFollowing(method: "trending")
+        return recieps.count
     }
       
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,7 +36,7 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
             let currRecipe = recieps[indexPath.row]
             
             cell.userImage.image = currRecipe.owner?.image
-            cell.recipeTimeStamp.text = formatDate(date: currRecipe.dateEntry)
+            cell.recipeTimeStamp.text = feed.formatDate(date: currRecipe.dateEntry)
             cell.userNickName.text = "@\(currRecipe.owner!.nickName)"
             cell.userName.text = currRecipe.owner?.name
             cell.recipeName.text = currRecipe.name
@@ -46,11 +47,4 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         }
         return UITableViewCell()
       }
-    
-    // Returns a concise string corresponding to time since post
-    func formatDate(date: Date) -> String {
-        // returns a concise string corresponding to time since post
-        let minutesAgo =  -Int((date.timeIntervalSinceNow / 60))
-        return "\(minutesAgo) minutes ago"
-    }
 }

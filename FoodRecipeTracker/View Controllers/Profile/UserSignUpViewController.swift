@@ -24,6 +24,7 @@ class UserSignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "signedIn", sender: sender)
+        performSegue(withIdentifier: "signedUp", sender: sender)
     }
+
 }

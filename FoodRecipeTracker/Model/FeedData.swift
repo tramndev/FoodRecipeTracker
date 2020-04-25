@@ -61,6 +61,10 @@ class User {
         }
         return nil
     }
+    
+    static func ==(right: User, left: User) -> Bool {
+        return right.name == left.name && right.email == left.email
+    }
 }
 
 struct LoginInfo {
@@ -144,6 +148,7 @@ class FeedData {
     var thisUser: User
     var users: [User]
     var recipes: [Recipe] = []
+    var signedIn: Bool = true
     
     func addRecipe(recipe: Recipe, user: User){
         recipes.append(recipe)
@@ -151,30 +156,76 @@ class FeedData {
     }
     
     func sortRecipeFollowing(method: String) -> [Recipe]{
-        var sortedRecipes: [Recipe] = []
+        var sortedRecipes: [Recipe] = recipes
         // !!!!!
         sortedRecipes = recipes
         switch method {
         case "trending": // Sorted by likedCount
-            return sortedRecipes
+            return sortedRecipes.sorted(by: { $0.getLikes() > $1.getLikes()})
         case "recently": // Sorted by timestamp
-            return sortedRecipes
+            return sortedRecipes.sorted(by: { $0.dateEntry < $1.dateEntry})
+        case "user":
+            return sortRecipeFollowing(user: tramnguyen)
         default:
             return sortedRecipes
         }
     }
     
     func sortRecipeFollowing(user: User) -> [Recipe]{
-        return recipes
+        
+        var sortedRecipes: [Recipe] = []
         // Sorted by user and timestamp
+        for recipe in recipes {
+            if (recipe.owner?.name == user.name) {
+                sortedRecipes.append(recipe)
+            }
+        }
+        return sortedRecipes.sorted(by: { $0.dateEntry > $1.dateEntry})
+    }
+    
+    // Returns a concise string corresponding to time since post
+    func formatDate(date: Date) -> String {
+        let secondsAgo = Int(Date().timeIntervalSince(date))
+    
+            let minute = 60
+            let hour = 60 * minute
+            let day = 24 * hour
+            let week = 7 * day
+            let month = 4 * week
+            let year = 12 * month
+
+        
+            let quotient: Int
+            let unit: String
+            if secondsAgo < hour {
+                quotient = secondsAgo / minute
+                unit = "min"
+            } else if secondsAgo < day {
+                quotient = secondsAgo / hour
+                unit = "hour"
+            } else if secondsAgo < week {
+                quotient = secondsAgo / day
+                unit = "day"
+            } else if secondsAgo < month {
+                quotient = secondsAgo / week
+                unit = "week"
+            } else if secondsAgo < year{
+                quotient = secondsAgo / month
+                unit = "month"
+            } else {
+                quotient = secondsAgo / year
+                unit = "year"
+            }
+            return "\(quotient) \(unit)\(quotient == 1 ? "" : "s") ago"
     }
     
     // DUMMY DATA
     init() {
         // Initialize dummy data
-        anton.addRecipe(recipe: recipe1)
-        tramnguyen.addRecipe(recipe: recipe2)
-        tramnguyen.addRecipe(recipe: recipe3)
+        recipe2.liked = [anton, guest]
+        tramnguyen.addRecipe(recipe: recipe3) // "Crispy Spring Rolls"
+        anton.addRecipe(recipe: recipe2) // "Crispy Chicken Wings"
+        tramnguyen.addRecipe(recipe: recipe1) //"Chinnese Hotpot",
         self.thisUser = guest
         self.users = [guest, tramnguyen, anton]
         for user in users {
@@ -232,7 +283,7 @@ class FeedData {
     )
     
     var recipe3: Recipe = Recipe(
-        name: "Crispy Chicken Wings",
+        name: "Crispy Spring Rolls",
         description: "The rolls are  light with crisp-crackly skin and small enough to enjoy in 4 bites.  ",
         servings: 2,
         prepTime: 25,
@@ -242,13 +293,10 @@ class FeedData {
         notes: "N/A",
         image: UIImage(named: "vietnamese-spring-rolls-recipe-80918")!
     )
+    
+    
 }
 
-// Returns a concise string corresponding to time since post
-func formatDate(date: Date) -> String {
-    // returns a concise string corresponding to time since post
-    let minutesAgo =  -Int((date.timeIntervalSinceNow / 60))
-    return "\(minutesAgo) minutes ago"
-}
+
 
 

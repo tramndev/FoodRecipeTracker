@@ -21,5 +21,4 @@ class UserOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }

@@ -25,18 +25,23 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feed.recipes.count
+        let recipes = feed.sortRecipeFollowing(method: "user")
+        return recipes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "userRecipeTableVewCell", for: indexPath) as? UserRecipeTableViewCell {
 
             // configure TrendingTableCell
-            let recieps = feed.sortRecipeFollowing(method: "trending")
-            let currRecipe = recieps[indexPath.row]
+            let recipes = feed.sortRecipeFollowing(method: "user")
+            for r in recipes {
+                print(r.name)
+            }
+            print(indexPath.row)
+            let currRecipe = recipes[indexPath.row]
 
             cell.userImage.image = currRecipe.owner?.image
-            cell.timeStamp.text = formatDate(date: currRecipe.dateEntry)
+            cell.timeStamp.text = feed.formatDate(date: currRecipe.dateEntry)
             cell.userNickName.text = "@\(currRecipe.owner!.nickName)"
             cell.userName.text = currRecipe.owner?.name
             cell.recipeName.text = currRecipe.name
@@ -54,5 +59,7 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         let minutesAgo =  -Int((date.timeIntervalSinceNow / 60))
         return "\(minutesAgo) minutes ago"
     }
+    
+    
 
 }

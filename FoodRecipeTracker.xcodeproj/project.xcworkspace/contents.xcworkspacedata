@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FoodRecipeTracker.xcodeproj">
+      location = "self:/Users/tramnguyen/Google Drive/14. UC Berkeley/IOS DECAL/FoodRecipeTracker/FoodRecipeTracker.xcodeproj">
    </FileRef>
 </Workspace>
