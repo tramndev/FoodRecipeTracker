@@ -27,8 +27,8 @@ class TabBarViewController: UITabBarController {
             
             if (feed.signedIn) {
                 self.viewControllers = [home, trending, profile]
+                self.selectedIndex = 0
                 feed.signedIn = false
-                
             } else {
                 self.viewControllers = [home, trending, addRecipe, notifications, yourProfile]
                 self.selectedIndex = 4

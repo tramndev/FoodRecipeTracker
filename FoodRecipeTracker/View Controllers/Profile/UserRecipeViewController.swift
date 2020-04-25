@@ -52,14 +52,4 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         return UITableViewCell()
       }
-
-    // Returns a concise string corresponding to time since post
-    func formatDate(date: Date) -> String {
-        // returns a concise string corresponding to time since post
-        let minutesAgo =  -Int((date.timeIntervalSinceNow / 60))
-        return "\(minutesAgo) minutes ago"
-    }
-    
-    
-
 }

@@ -878,7 +878,7 @@ You an also add a dash of Cayenne pepper.</string>
             <objects>
                 <viewController id="zTL-Vy-jDg" customClass="UserSignUpViewController" customModule="Cookbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZiT-h6-L27">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chef" translatesAutoresizingMaskIntoConstraints="NO" id="fRA-fG-ABW">
@@ -1133,7 +1133,7 @@ You an also add a dash of Cayenne pepper.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5LM-Kt-fDX"/>
+        <segue reference="94d-cj-fVh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1567085928842" width="826" height="620"/>
