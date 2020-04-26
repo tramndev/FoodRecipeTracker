@@ -12,18 +12,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var trendingCollectionView: UICollectionView!
     @IBOutlet weak var recipeTableView: UITableView!
+    
+    let trendingRecipes = feed.sortRecipeFollowing(method: "trending")
+    let recentlyRecipes = feed.sortRecipeFollowing(method: "recently")
+    
     var likes: [Bool]!
     
     // TRENDING COLLECTION VIEW SETUP
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return feed.recipes.count
+        return trendingRecipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let index = indexPath.item
-        let recipe = feed.recipes[index]
+        let recipe = trendingRecipes[index]
         
-       
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "trendingCollectionViewCell", for: indexPath) as? TrendingCollectionViewCell {
             
              // configure TrendingCollectionViewCell
@@ -35,6 +38,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return UICollectionViewCell()
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // segue to preview controller with selected recipe
+        let chosenThread = trendingRecipes[indexPath.item]
+        performSegue(withIdentifier: "showRecipe", sender: chosenThread)
+    }
     
     // RECIPE TABLE VIEW SETUP
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -42,16 +50,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let recieps = feed.sortRecipeFollowing(method: "recently")
-        return recieps.count
+        return recentlyRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableCell", for: indexPath) as? RecipesTableCell {
             
             // configure RecipesTableCell
-            let recieps = feed.sortRecipeFollowing(method: "recently")
-            let currRecipe = recieps[indexPath.row]
+            let currRecipe = recentlyRecipes[indexPath.row]
             
             cell.userImage.image = currRecipe.owner?.image
             cell.timeStamp.text = feed.formatDate(date: currRecipe.dateEntry)
@@ -66,7 +72,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return UITableViewCell()
     }
     
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chosenRecipe = recentlyRecipes[indexPath.item]
+        performSegue(withIdentifier: "showRecipe", sender: chosenRecipe)
+    }
+
     // INITAL SETUP
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,5 +91,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         trendingCollectionView.reloadData()
         recipeTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
+            dest.chosenRecipe = chosenRecipe
+        }
     }
 }

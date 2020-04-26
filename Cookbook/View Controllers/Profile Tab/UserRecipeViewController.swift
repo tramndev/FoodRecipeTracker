@@ -28,10 +28,10 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         userName.text = currUser.name
         memberSince.text = "Member since \(currUser.getYearEntry())"
-        achievements.text = "Shared \(currUser.getFollowedCount()) dishes | \(currUser.getFollowersCount()) followes"
+        achievements.text = "Shared \(currUser.getRecipesCount()) dishes | \(currUser.getFollowersCount()) followers"
         userImage.image = currUser.image
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         userRecipeTableView.reloadData()
     }
@@ -66,6 +66,12 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(currUser.name)
+        let chosenRecipe = feed.sortRecipeFollowing(user: currUser)[indexPath.item]
+        performSegue(withIdentifier: "showRecipe", sender: chosenRecipe)
+    }
+    
     @IBAction func signOutButtonPressed(_ sender: Any) {
         firebaseManager.signOut()
         performSegue(withIdentifier: "signedOut", sender: sender)
@@ -75,4 +81,9 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "addRecipe", sender: sender)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
+            dest.chosenRecipe = chosenRecipe
+        }
+    }
 }

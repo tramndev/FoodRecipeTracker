@@ -22,16 +22,18 @@ class RecipeViewController: UIViewController {
     @IBOutlet var ingredients: UILabel!
     @IBOutlet var instructions: UILabel!
     @IBOutlet var notes: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        viewNextEntry()
-    }
-    
-    func viewNextEntry() {
-        self.navigationController?.popToRootViewController(animated: true)
+        recipeImage.image = chosenRecipe.image
+        recipeName.text = chosenRecipe.name
+        recipeOwner.setTitle(chosenRecipe.owner?.name, for: .normal)
+        recipeBriefDescription.text = chosenRecipe.description
+        servings.text = "\(chosenRecipe.servings)"
+        prepTime.text = "\(chosenRecipe.prepTime)"
+        cookTime.text = "\(chosenRecipe.cookTime)"
+        ingredients.text = chosenRecipe.ingredients
+        instructions.text = chosenRecipe.instructions
+        notes.text = chosenRecipe.notes
     }
 }

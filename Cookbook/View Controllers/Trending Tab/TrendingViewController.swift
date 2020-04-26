@@ -10,6 +10,7 @@ import UIKit
 
 class TrendingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var trendingTableView: UITableView!
+    let recipes = feed.sortRecipeFollowing(method: "trending")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +30,13 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let recieps = feed.sortRecipeFollowing(method: "trending")
-        return recieps.count
+        return recipes.count
     }
       
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "trendingTableView", for: indexPath) as? TrendingTableViewCell {
-            
             // configure TrendingTableCell
-            let recieps = feed.sortRecipeFollowing(method: "trending")
-            let currRecipe = recieps[indexPath.row]
+            let currRecipe = recipes[indexPath.row]
 
             cell.userImage.image = currRecipe.owner?.image
             cell.recipeTimeStamp.text = feed.formatDate(date: currRecipe.dateEntry)
@@ -52,4 +50,15 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         }
         return UITableViewCell()
       }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chosenRecipe = recipes[indexPath.item]
+        performSegue(withIdentifier: "showRecipe", sender: chosenRecipe)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
+            dest.chosenRecipe = chosenRecipe
+        }
+    }
 }

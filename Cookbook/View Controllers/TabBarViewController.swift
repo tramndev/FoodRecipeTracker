@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
-    var index: Int = 2
+    var index: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

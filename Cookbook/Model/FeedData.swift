@@ -153,13 +153,12 @@ class FeedData {
     
     func sortRecipeFollowing(method: String) -> [Recipe]{
         var sortedRecipes: [Recipe] = recipes
-        // !!!!!
         sortedRecipes = recipes
         switch method {
         case "trending": // Sorted by likedCount
             return sortedRecipes.sorted(by: { $0.getLikes() > $1.getLikes()})
         case "recently": // Sorted by timestamp
-            return sortedRecipes.sorted(by: { $0.dateEntry < $1.dateEntry})
+            return sortedRecipes.sorted(by: { $0.dateEntry > $1.dateEntry})
         case "user":
             return sortRecipeFollowing(user: tramnguyen)
         default:
@@ -219,10 +218,9 @@ class FeedData {
         // Initialize dummy data
         recipe2.liked = [anton, guest]
         
-        
-        tramnguyen.addRecipe(recipe: recipe3) // "Crispy Spring Rolls"
-        anton.addRecipe(recipe: recipe2) // "Crispy Chicken Wings"
-        tramnguyen.addRecipe(recipe: recipe1) //"Chinnese Hotpot",
+        tramnguyen.addRecipe(recipe: recipe3) // "Crispy Spring Rolls"3
+        anton.addRecipe(recipe: recipe2) // "Crispy Chicken Wings"2
+        tramnguyen.addRecipe(recipe: recipe1) //"Chinnese Hotpot",1
         
         self.curr = guest
         self.users = [guest, tramnguyen, anton]
@@ -289,10 +287,8 @@ class FeedData {
         ingredients: "Testing",
         instructions: "Toss chicken wings until they are coated evenly. After your chicken wings are coated, place aluminium foil on your baking sheet to catch any drippings, then arrange a wire rack over the top. Place your wings in an even layer to allow the heat to be evenly distributed.",
         notes: "N/A",
-        image: UIImage(named: "vietnamese-spring-rolls-recipe-80918")!
+        image: UIImage(named: "bun-cha-gio1-300x199")!
     )
-    
-    
 }
 
 

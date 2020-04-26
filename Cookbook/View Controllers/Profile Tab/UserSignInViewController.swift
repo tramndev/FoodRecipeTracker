@@ -42,7 +42,7 @@ class UserSignInViewController: UIViewController {
     }
     
     func allInputFilled()->Bool {
-        if usenameInput.text != "" || passwordInput.text != "" {
+        if usenameInput.text != "" && passwordInput.text != "" {
             return true
         }
         return false

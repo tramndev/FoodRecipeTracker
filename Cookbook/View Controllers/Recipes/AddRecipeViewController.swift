@@ -32,6 +32,8 @@ class AddRecipeViewController: UIViewController {
         
         self.imagePickerController = UIImagePickerController()
         self.imagePickerController.delegate = self
+        
+        recipeOwner.text = "by \(feed.getCurrUser()!.name)"
     }
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
@@ -48,24 +50,27 @@ class AddRecipeViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        let servingsInt:Int? = Int(servings.text!)
-        let cookTimeInt:Int? = Int(cookTime.text!)
-        let prepTimeInt:Int? = Int(prepTime.text!)
+        if (allInputFilled()) {
+            let servingsInt:Int? = Int(servings.text!)
+            let cookTimeInt:Int? = Int(cookTime.text!)
+            let prepTimeInt:Int? = Int(prepTime.text!)
 
-        let myRecipe: Recipe = Recipe(
-            name: recipeName.text!,
-            description: recipeBriefDescription.text!,
-            servings: servingsInt!,
-            prepTime: cookTimeInt!,
-            cookTime: prepTimeInt!,
-            ingredients: ingredients.text!,
-            instructions: instructions.text!,
-            notes: notes.text!,
-            image: recipeImage.image!
-        )
+            let addedRecipe: Recipe = Recipe(
+                name: recipeName.text!,
+                description: recipeBriefDescription.text!,
+                servings: servingsInt!,
+                prepTime: cookTimeInt!,
+                cookTime: prepTimeInt!,
+                ingredients: ingredients.text!,
+                instructions: instructions.text!,
+                notes: notes.text!,
+                image: recipeImage.image!
+            )
 
-        feed.getCurrUser()?.addRecipe(recipe: myRecipe)
-        performSegue(withIdentifier: "showRecipe", sender: sender)
+            feed.addRecipe(recipe: addedRecipe, user: feed.getCurrUser()!)
+            performSegue(withIdentifier: "goBack", sender: addedRecipe)
+            
+        }
     }
 }
 
@@ -83,9 +88,25 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? RecipeViewController, let addedRecipe = sender as? Recipe  {
-            dest.chosenRecipe = addedRecipe
+    func allInputFilled()->Bool {
+        if recipeImage.image != nil &&
+            recipeName.text != "" &&
+            recipeOwner.text != "" &&
+            recipeBriefDescription.text != "" &&
+            servings.text != "" &&
+            ingredients.text != "" &&
+            cookTime.text != "" &&
+            prepTime.text != "" &&
+            instructions.text != "" ||
+            notes.text != "" {
+            return true
         }
+        return false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if let dest = segue.destination as? RecipeViewController, let addedRecipe = sender as? Recipe  {
+               dest.chosenRecipe = addedRecipe
+           }
+       }
 }
