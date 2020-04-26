@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AFC7CB8E7014A0EA60255F7 /* Pods_Cookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A160FFB391C81EE8E9855FFF /* Pods_Cookbook.framework */; };
+		8B4681DA2454DBAA007E040C /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4681D92454DBAA007E040C /* FirebaseAuthManager.swift */; };
+		8B4681DE24552B64007E040C /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4681DD24552B64007E040C /* AddRecipeViewController.swift */; };
 		8B62C05424534C080004931D /* UserRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B62C05324534C080004931D /* UserRecipeViewController.swift */; };
 		8B62C05C245357B90004931D /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B62C05B245357B90004931D /* UserSignUpViewController.swift */; };
 		8B62C05E245357CE0004931D /* UserSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B62C05D245357CE0004931D /* UserSignInViewController.swift */; };
@@ -14,12 +17,13 @@
 		8B62C06624537C690004931D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B62C06524537C690004931D /* TabBarViewController.swift */; };
 		8B67C7E7244835D60001C61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B67C7E6244835D60001C61F /* AppDelegate.swift */; };
 		8B67C7E9244835D60001C61F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B67C7E8244835D60001C61F /* SceneDelegate.swift */; };
-		8B67C7EB244835D60001C61F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B67C7EA244835D60001C61F /* ViewController.swift */; };
 		8B67C7EE244835D60001C61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B67C7EC244835D60001C61F /* Main.storyboard */; };
 		8B67C7F0244835D90001C61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B67C7EF244835D90001C61F /* Assets.xcassets */; };
 		8B67C7F3244835D90001C61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B67C7F1244835D90001C61F /* LaunchScreen.storyboard */; };
 		8B87AE512451E4EA007C3982 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87AE502451E4EA007C3982 /* TrendingViewController.swift */; };
 		8B87AE532452443A007C3982 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87AE522452443A007C3982 /* NotificationsViewController.swift */; };
+		8B9CE6152455445A00F2025F /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9CE6142455445A00F2025F /* RecipeViewController.swift */; };
+		8BD4AC3F2454D36800AC3EB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BD4AC3E2454D36800AC3EB6 /* GoogleService-Info.plist */; };
 		8BF913CC24511A6700F867A3 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF913CB24511A6700F867A3 /* FeedData.swift */; };
 		8BF913D4245123C900F867A3 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF913D3245123C900F867A3 /* TrendingCollectionViewCell.swift */; };
 		8BF913D6245124A600F867A3 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF913D5245124A600F867A3 /* FriendRequestTableViewCell.swift */; };
@@ -31,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4FA58D57B930F9AE518317BA /* Pods-Cookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cookbook.debug.xcconfig"; path = "Target Support Files/Pods-Cookbook/Pods-Cookbook.debug.xcconfig"; sourceTree = "<group>"; };
+		8B4681D92454DBAA007E040C /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		8B4681DD24552B64007E040C /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		8B62C05324534C080004931D /* UserRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecipeViewController.swift; sourceTree = "<group>"; };
 		8B62C05B245357B90004931D /* UserSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
 		8B62C05D245357CE0004931D /* UserSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignInViewController.swift; sourceTree = "<group>"; };
@@ -39,13 +46,14 @@
 		8B67C7E3244835D60001C61F /* Cookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B67C7E6244835D60001C61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B67C7E8244835D60001C61F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8B67C7EA244835D60001C61F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B67C7ED244835D60001C61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B67C7EF244835D90001C61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B67C7F2244835D90001C61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B67C7F4244835D90001C61F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B87AE502451E4EA007C3982 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		8B87AE522452443A007C3982 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		8B9CE6142455445A00F2025F /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		8BD4AC3E2454D36800AC3EB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BF913CB24511A6700F867A3 /* FeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		8BF913D3245123C900F867A3 /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BF913D5245124A600F867A3 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -54,6 +62,8 @@
 		8BF913DB2451251300F867A3 /* UserRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		8BF913DF245125C700F867A3 /* RecipesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableCell.swift; sourceTree = "<group>"; };
 		8BF913E124512B8600F867A3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		928FF57882641F9087789FA4 /* Pods-Cookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cookbook.release.xcconfig"; path = "Target Support Files/Pods-Cookbook/Pods-Cookbook.release.xcconfig"; sourceTree = "<group>"; };
+		A160FFB391C81EE8E9855FFF /* Pods_Cookbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cookbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +71,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AFC7CB8E7014A0EA60255F7 /* Pods_Cookbook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		306AF775236B5532E4AB516D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A160FFB391C81EE8E9855FFF /* Pods_Cookbook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		47F5587C8041A1AA61238F52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FA58D57B930F9AE518317BA /* Pods-Cookbook.debug.xcconfig */,
+				928FF57882641F9087789FA4 /* Pods-Cookbook.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8B1EF207244910AD00F07F81 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,9 +123,9 @@
 				8B62C06524537C690004931D /* TabBarViewController.swift */,
 				8B1EF20A244912DE00F07F81 /* Home Tab */,
 				8B1EF20B244912E600F07F81 /* Trending Tab */,
-				8B1EF20C244912EE00F07F81 /* Add Recipes Tab */,
 				8B1EF20D244912F600F07F81 /* Notifications */,
-				8B1EF20E244912FC00F07F81 /* Profile */,
+				8B1EF20E244912FC00F07F81 /* Profile Tab */,
+				8B9CE6132455442700F2025F /* Recipes */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -118,13 +146,6 @@
 			path = "Trending Tab";
 			sourceTree = "<group>";
 		};
-		8B1EF20C244912EE00F07F81 /* Add Recipes Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Add Recipes Tab";
-			sourceTree = "<group>";
-		};
 		8B1EF20D244912F600F07F81 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +154,7 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		8B1EF20E244912FC00F07F81 /* Profile */ = {
+		8B1EF20E244912FC00F07F81 /* Profile Tab */ = {
 			isa = PBXGroup;
 			children = (
 				8B62C05F245357E40004931D /* UserOptionsViewController.swift */,
@@ -141,7 +162,15 @@
 				8B62C05D245357CE0004931D /* UserSignInViewController.swift */,
 				8B62C05324534C080004931D /* UserRecipeViewController.swift */,
 			);
-			path = Profile;
+			path = "Profile Tab";
+			sourceTree = "<group>";
+		};
+		8B4681D82454DB71007E040C /* Firebase Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8B4681D92454DBAA007E040C /* FirebaseAuthManager.swift */,
+			);
+			path = "Firebase Manager";
 			sourceTree = "<group>";
 		};
 		8B67C7DA244835D60001C61F = {
@@ -149,6 +178,8 @@
 			children = (
 				8B67C7E5244835D60001C61F /* Cookbook */,
 				8B67C7E4244835D60001C61F /* Products */,
+				47F5587C8041A1AA61238F52 /* Pods */,
+				306AF775236B5532E4AB516D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,15 +196,25 @@
 			children = (
 				8B67C7E6244835D60001C61F /* AppDelegate.swift */,
 				8B67C7E8244835D60001C61F /* SceneDelegate.swift */,
+				8B4681D82454DB71007E040C /* Firebase Manager */,
 				8B1EF207244910AD00F07F81 /* Model */,
 				8B1EF208244912C400F07F81 /* View */,
 				8B1EF209244912CC00F07F81 /* View Controllers */,
-				8B67C7EA244835D60001C61F /* ViewController.swift */,
 				8B67C7EF244835D90001C61F /* Assets.xcassets */,
 				8B67C7F1244835D90001C61F /* LaunchScreen.storyboard */,
 				8B67C7F4244835D90001C61F /* Info.plist */,
+				8BD4AC3E2454D36800AC3EB6 /* GoogleService-Info.plist */,
 			);
 			path = Cookbook;
+			sourceTree = "<group>";
+		};
+		8B9CE6132455442700F2025F /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				8B4681DD24552B64007E040C /* AddRecipeViewController.swift */,
+				8B9CE6142455445A00F2025F /* RecipeViewController.swift */,
+			);
+			path = Recipes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,9 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B67C7F7244835D90001C61F /* Build configuration list for PBXNativeTarget "Cookbook" */;
 			buildPhases = (
+				8DF3611F030C0F0475E9D90C /* [CP] Check Pods Manifest.lock */,
 				8B67C7DF244835D60001C61F /* Sources */,
 				8B67C7E0244835D60001C61F /* Frameworks */,
 				8B67C7E1244835D60001C61F /* Resources */,
+				981FCBDD2F761E7AA111015A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,10 +280,53 @@
 				8B67C7F3244835D90001C61F /* LaunchScreen.storyboard in Resources */,
 				8B67C7F0244835D90001C61F /* Assets.xcassets in Resources */,
 				8B67C7EE244835D60001C61F /* Main.storyboard in Resources */,
+				8BD4AC3F2454D36800AC3EB6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8DF3611F030C0F0475E9D90C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cookbook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		981FCBDD2F761E7AA111015A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cookbook/Pods-Cookbook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cookbook/Pods-Cookbook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cookbook/Pods-Cookbook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8B67C7DF244835D60001C61F /* Sources */ = {
@@ -248,11 +334,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B62C060245357E40004931D /* UserOptionsViewController.swift in Sources */,
-				8B67C7EB244835D60001C61F /* ViewController.swift in Sources */,
 				8BF913D6245124A600F867A3 /* FriendRequestTableViewCell.swift in Sources */,
 				8BF913E0245125C700F867A3 /* RecipesTableCell.swift in Sources */,
 				8B62C06624537C690004931D /* TabBarViewController.swift in Sources */,
+				8B9CE6152455445A00F2025F /* RecipeViewController.swift in Sources */,
 				8B87AE532452443A007C3982 /* NotificationsViewController.swift in Sources */,
+				8B4681DE24552B64007E040C /* AddRecipeViewController.swift in Sources */,
 				8B62C05C245357B90004931D /* UserSignUpViewController.swift in Sources */,
 				8B67C7E7244835D60001C61F /* AppDelegate.swift in Sources */,
 				8B62C05424534C080004931D /* UserRecipeViewController.swift in Sources */,
@@ -260,6 +347,7 @@
 				8B87AE512451E4EA007C3982 /* TrendingViewController.swift in Sources */,
 				8BF913D8245124DE00F867A3 /* TrendingTableViewCell.swift in Sources */,
 				8B67C7E9244835D60001C61F /* SceneDelegate.swift in Sources */,
+				8B4681DA2454DBAA007E040C /* FirebaseAuthManager.swift in Sources */,
 				8BF913E224512B8600F867A3 /* HomeViewController.swift in Sources */,
 				8BF913DA245124FE00F867A3 /* NotificationsTableViewCell.swift in Sources */,
 				8BF913DC2451251300F867A3 /* UserRecipeTableViewCell.swift in Sources */,
@@ -406,11 +494,13 @@
 		};
 		8B67C7F8244835D90001C61F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FA58D57B930F9AE518317BA /* Pods-Cookbook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TUTNS6EH87;
 				INFOPLIST_FILE = Cookbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,11 +514,13 @@
 		};
 		8B67C7F9244835D90001C61F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 928FF57882641F9087789FA4 /* Pods-Cookbook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TUTNS6EH87;
 				INFOPLIST_FILE = Cookbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

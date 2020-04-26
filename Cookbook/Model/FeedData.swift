@@ -51,8 +51,19 @@ class User {
         return self.followers.count
     }
     
+    func getRecipesCount() -> Int {
+        return self.userRecipes.count
+    }
+    
+    
     func getFollowedCount() -> Int {
         return self.followed.count
+    }
+    
+    func getYearEntry() -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: dateEntry)
+        return components.year!
     }
     
     func removeRecipe(index: Int) -> Recipe? {
@@ -80,13 +91,13 @@ class Recipe {
     var prepTime: Int
     var cookTime: Int
     var dateEntry: Date
-    var ingredients: [String]
+    var ingredients: String
     var instructions: String
     var notes: String
     var liked: [User]
     var owner: User?
     
-    init(name: String, description: String, servings: Int, prepTime: Int, cookTime: Int, ingredients: [String], instructions: String, notes: String, image: UIImage) {
+    init(name: String, description: String, servings: Int, prepTime: Int, cookTime: Int, ingredients: String, instructions: String, notes: String, image: UIImage) {
         self.image = image
         self.name = name
         self.description = description
@@ -101,38 +112,6 @@ class Recipe {
         owner = nil
     }
     
-    func setName(name: String) {
-        self.name = name
-    }
-    
-    func setDescription(description: String) {
-        self.description = description
-    }
-    
-    func setServings(servings: Int) {
-        self.servings = servings
-    }
-    
-    func setPrepTime(prepTime: Int) {
-        self.prepTime = prepTime
-    }
-    
-    func setCookTime(cookTime: Int) {
-        self.cookTime = cookTime
-    }
-    
-    func setIngredients(ingredients: [String]) {
-        self.ingredients = ingredients
-    }
-    
-    func setInstructions(instructions: String) {
-        self.instructions = instructions
-    }
-    
-    func setNotes(notes: String) {
-        self.notes = notes
-    }
-    
     func setOwner(user: User) {
         self.owner = user
     }
@@ -141,14 +120,31 @@ class Recipe {
         return self.liked.count
     }
     
-    
 }
 
 class FeedData {
-    var thisUser: User
+    var curr: User
     var users: [User]
     var recipes: [Recipe] = []
-    var signedIn: Bool = true
+    func addUser(user: User) {
+        users.append(user)
+    }
+    
+    func getCurrUser() -> User? {
+        if (firebaseManager.signedIn()) {
+            return getCurrUserFrom(email: firebaseManager.getCurrUserEmail())!
+        }
+        return guest
+    }
+    
+    func getCurrUserFrom(email: String) -> User? {
+        for user in users {
+            if user.email == email {
+                return user
+            }
+        }
+        return nil
+    }
     
     func addRecipe(recipe: Recipe, user: User){
         recipes.append(recipe)
@@ -172,7 +168,6 @@ class FeedData {
     }
     
     func sortRecipeFollowing(user: User) -> [Recipe]{
-        
         var sortedRecipes: [Recipe] = []
         // Sorted by user and timestamp
         for recipe in recipes {
@@ -223,10 +218,13 @@ class FeedData {
     init() {
         // Initialize dummy data
         recipe2.liked = [anton, guest]
+        
+        
         tramnguyen.addRecipe(recipe: recipe3) // "Crispy Spring Rolls"
         anton.addRecipe(recipe: recipe2) // "Crispy Chicken Wings"
         tramnguyen.addRecipe(recipe: recipe1) //"Chinnese Hotpot",
-        self.thisUser = guest
+        
+        self.curr = guest
         self.users = [guest, tramnguyen, anton]
         for user in users {
             let userRecipe = user.userRecipes
@@ -264,7 +262,7 @@ class FeedData {
         servings: 2,
         prepTime: 60,
         cookTime: 20,
-        ingredients: ["Testing"],
+        ingredients: "Testing",
         instructions: "Testing",
         notes: "Testing",
         image: UIImage(named: "l-u-coca-ngon-tr-danh")!
@@ -276,7 +274,7 @@ class FeedData {
         servings: 2,
         prepTime: 25,
         cookTime: 20,
-        ingredients: ["Testing"],
+        ingredients: "Testing",
         instructions: "Toss chicken wings until they are coated evenly. After your chicken wings are coated, place aluminium foil on your baking sheet to catch any drippings, then arrange a wire rack over the top. Place your wings in an even layer to allow the heat to be evenly distributed.",
         notes: "Chicken wings can take about 50 minutes or more to bake, flipping them halfway through cooking time to allow even crispness",
         image: UIImage(named: "baked-chicken-wings")!
@@ -288,7 +286,7 @@ class FeedData {
         servings: 2,
         prepTime: 25,
         cookTime: 20,
-        ingredients: ["Testing"],
+        ingredients: "Testing",
         instructions: "Toss chicken wings until they are coated evenly. After your chicken wings are coated, place aluminium foil on your baking sheet to catch any drippings, then arrange a wire rack over the top. Place your wings in an even layer to allow the heat to be evenly distributed.",
         notes: "N/A",
         image: UIImage(named: "vietnamese-spring-rolls-recipe-80918")!

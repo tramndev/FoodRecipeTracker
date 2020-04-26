@@ -18,6 +18,11 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         trendingTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        trendingTableView.reloadData()
+        trendingTableView.reloadData()
+    }
+    
     // TRENDING TABLE VIEW SETUP
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 325
@@ -34,7 +39,7 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
             // configure TrendingTableCell
             let recieps = feed.sortRecipeFollowing(method: "trending")
             let currRecipe = recieps[indexPath.row]
-            
+
             cell.userImage.image = currRecipe.owner?.image
             cell.recipeTimeStamp.text = feed.formatDate(date: currRecipe.dateEntry)
             cell.userNickName.text = "@\(currRecipe.owner!.nickName)"

@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
              // configure TrendingCollectionViewCell
             cell.trendingRecipeImage.image = recipe.image
             cell.trendingRecipeName.text = recipe.name
-
             
             return cell
         } else {

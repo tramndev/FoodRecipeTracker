@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
-    var bool: Int = 1
+    var index: Int = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,22 +18,22 @@ class TabBarViewController: UITabBarController {
 
             let home = currentViewControllers[0]
             let trending = currentViewControllers[1]
-            let addRecipe = currentViewControllers[2]
-            let notifications = currentViewControllers[3]
-            let profile = currentViewControllers[4]
-            let yourProfile = currentViewControllers[5]
-            
-            print(bool)
-            
-            if (feed.signedIn) {
+            let notifications = currentViewControllers[2]
+            let profile = currentViewControllers[3]
+            let yourProfile = currentViewControllers[4]
+                    
+            if (!firebaseManager.signedIn()) {
                 self.viewControllers = [home, trending, profile]
-                self.selectedIndex = 0
-                feed.signedIn = false
             } else {
-                self.viewControllers = [home, trending, addRecipe, notifications, yourProfile]
-                self.selectedIndex = 4
+                self.viewControllers = [home, trending, notifications, yourProfile]
+                index = 3
             }
+            viewPrepareAtIndex(index: index)
         }
+    }
+    
+    func viewPrepareAtIndex(index: Int) {
+        self.selectedIndex = index
     }
     
     func signedIn() -> Bool {

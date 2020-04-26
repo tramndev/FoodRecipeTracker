@@ -11,21 +11,38 @@ import UIKit
 class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userRecipeTableView: UITableView!
+    // Get the signed-in user
+    let currUser: User = feed.getCurrUser()!
+    
+    @IBOutlet var userImage: UIImageView!
+    @IBOutlet var memberSince: UILabel!
+    @IBOutlet var achievements: UILabel!
+    @IBOutlet var userName: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         userRecipeTableView.delegate = self
         userRecipeTableView.dataSource = self
+        
+        userName.text = currUser.name
+        memberSince.text = "Member since \(currUser.getYearEntry())"
+        achievements.text = "Shared \(currUser.getFollowedCount()) dishes | \(currUser.getFollowersCount()) followes"
+        userImage.image = currUser.image
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userRecipeTableView.reloadData()
+    }
+        
     // TRENDING TABLE VIEW SETUP
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 325
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let recipes = feed.sortRecipeFollowing(method: "user")
+        let recipes = feed.sortRecipeFollowing(user: currUser)
         return recipes.count
     }
 
@@ -33,7 +50,7 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         if let cell = tableView.dequeueReusableCell(withIdentifier: "userRecipeTableVewCell", for: indexPath) as? UserRecipeTableViewCell {
 
             // configure TrendingTableCell
-            let recipes = feed.sortRecipeFollowing(method: "user")
+            let recipes = feed.sortRecipeFollowing(user: currUser)
             let currRecipe = recipes[indexPath.row]
 
             cell.userImage.image = currRecipe.owner?.image
@@ -47,5 +64,15 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             return cell
         }
         return UITableViewCell()
-      }
+    }
+    
+    @IBAction func signOutButtonPressed(_ sender: Any) {
+        firebaseManager.signOut()
+        performSegue(withIdentifier: "signedOut", sender: sender)
+    }
+    
+    @IBAction func addRecipeButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "addRecipe", sender: sender)
+    }
+    
 }
