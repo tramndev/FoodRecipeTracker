@@ -364,7 +364,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYf-w2-Qfo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1613" y="-840"/>
+            <point key="canvasLocation" x="-1613" y="-867"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="WD7-eP-Kts">
@@ -857,10 +857,6 @@
                                                     <rect key="frame" x="-2" y="4" width="59" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="l-u-coca-ngon-tr-danh" translatesAutoresizingMaskIntoConstraints="NO" id="626-mb-Hk2">
-                                                    <rect key="frame" x="-2" y="65" width="376" height="209"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chinnese Hotpot" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kzf-xf-mgJ">
                                                     <rect key="frame" x="210" y="22" width="164" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -902,6 +898,10 @@
                                                     <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="l-u-coca-ngon-tr-danh" translatesAutoresizingMaskIntoConstraints="NO" id="626-mb-Hk2">
+                                                    <rect key="frame" x="-2" y="67" width="376" height="209"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1249,7 +1249,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ITW-88-R2a"/>
-        <segue reference="94d-cj-fVh"/>
+        <segue reference="e7D-nq-1Ye"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1567085928842" width="826" height="620"/>
