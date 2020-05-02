@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class NotificationsTableViewCell: UITableViewCell {
     @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var notiMessage: UILabel!
@@ -24,5 +25,7 @@ class NotificationsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

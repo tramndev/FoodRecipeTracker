@@ -32,7 +32,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
              // configure TrendingCollectionViewCell
             cell.trendingRecipeImage.image = recipe.image
             cell.trendingRecipeName.text = recipe.name
-            
+            if (recipe.isLikedBy(user: feed.getCurrUser()!)) {
+                cell.likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+                cell.likeButton.isEnabled = false
+            }
+            cell.delegate = self
             return cell
         } else {
             return UICollectionViewCell()
@@ -66,7 +70,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.recipeName.text = currRecipe.name
             cell.recipeImage.image = currRecipe.image
             cell.recipeBriefDescription.text = currRecipe.description
-        
+            
+            if (currRecipe.isLikedBy(user: feed.getCurrUser()!)) {
+                cell.likeButton.isEnabled = false
+                cell.likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+            }
+            
+            // Config for cell protocol funcs
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -97,5 +108,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
             dest.chosenRecipe = chosenRecipe
         }
+    }
+}
+
+extension HomeViewController: RecipeTableCellDelegate, TrendingCollectionViewCellDelegate {
+    func didTapLikeButton(recipe: Recipe) {
+        // Add like function
+        recipe.owner?.beLiked(byUser: feed.getCurrUser()!, theRecipe: recipe)
     }
 }

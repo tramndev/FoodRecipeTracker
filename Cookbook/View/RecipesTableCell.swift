@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RecipeTableCellDelegate {
+    func didTapLikeButton(recipe: Recipe)
+}
+
 class RecipesTableCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var timeStamp: UILabel!
@@ -17,6 +21,7 @@ class RecipesTableCell: UITableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeBriefDescription: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    var delegate: RecipeTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +30,10 @@ class RecipesTableCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        delegate?.didTapLikeButton(recipe: feed.getRecipe(recipeName: recipeName.text!)!)
+        likeButton.isEnabled = false
+        likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+    }
 }

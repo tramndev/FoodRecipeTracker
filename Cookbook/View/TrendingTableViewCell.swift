@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TrendingTableViewCellDelegate {
+    func didTapLikeButton(recipe: Recipe)
+}
+
 class TrendingTableViewCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var recipeTimeStamp: UILabel!
@@ -17,6 +21,15 @@ class TrendingTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeBriefDescription: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    var delegate: TrendingTableViewCellDelegate?
+    
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        delegate?.didTapLikeButton(recipe: feed.getRecipe(recipeName: recipeName.text!)!)
+        likeButton.isEnabled = false
+        likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

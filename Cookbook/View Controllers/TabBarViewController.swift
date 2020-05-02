@@ -26,7 +26,9 @@ class TabBarViewController: UITabBarController {
                 self.viewControllers = [home, trending, profile]
             } else {
                 self.viewControllers = [home, trending, notifications, yourProfile]
-                index = 3
+                if (index == 0) {
+                    index = 3
+                }
             }
             viewPrepareAtIndex(index: index)
         }

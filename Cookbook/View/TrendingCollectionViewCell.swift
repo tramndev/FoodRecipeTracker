@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol TrendingCollectionViewCellDelegate {
+    func didTapLikeButton(recipe: Recipe)
+}
+
 class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trendingRecipeImage: UIImageView!
     @IBOutlet weak var trendingRecipeName: UILabel!
     @IBOutlet weak var recipeBackground: UIStackView!
     @IBOutlet weak var likeButton: UIButton!
+    var delegate: TrendingCollectionViewCellDelegate?
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        delegate?.didTapLikeButton(recipe: feed.getRecipe(recipeName: trendingRecipeName.text!)!)
+        likeButton.isEnabled = false
+        likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+    }
 }

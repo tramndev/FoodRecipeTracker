@@ -12,23 +12,52 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var userRecipeTableView: UITableView!
     // Get the signed-in user
-    let currUser: User = feed.getCurrUser()!
+    var currUser: User!
+    var guestUser: User!
+    var loggedInUser: User = feed.getCurrUser()!
     
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var memberSince: UILabel!
     @IBOutlet var achievements: UILabel!
     @IBOutlet var userName: UILabel!
-    
+    @IBOutlet var addRecipeButton: UIButton!
+    @IBOutlet var signOutButton: UIButton!
+    @IBOutlet var followButton: UIButton!
+    @IBOutlet var tableViewCellTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if (guestUser != nil) {
+            currUser = guestUser
+            addRecipeButton.isEnabled = false
+            signOutButton.isEnabled = false
+            addRecipeButton.isHidden = true
+            signOutButton.isHidden = true
+            
+            print(loggedInUser.requestSent(user: guestUser))
+    
+            if (loggedInUser.beFriend(user: guestUser)) {
+                followButton.setTitle("Friend 🙋‍♀️", for: .normal)
+                followButton.isEnabled = false
+            } else if (loggedInUser.requestSent(user: guestUser)) {
+                followButton.setTitle("Request Sent", for: .normal)
+                followButton.isEnabled = false
+            } else {
+                followButton.setTitle("Add Friend", for: .normal)
+            }
+            tableViewCellTitle.text = "💁‍♀️ Cookbook"
+        } else {
+            tableViewCellTitle.text = "💁‍♀️ My Cookbook"
+            currUser = loggedInUser
+            followButton.isHidden = true
+            followButton.isEnabled = false
+        }
         userRecipeTableView.delegate = self
         userRecipeTableView.dataSource = self
         
         userName.text = currUser.name
         memberSince.text = "Member since \(currUser.getYearEntry())"
-        achievements.text = "Shared \(currUser.getRecipesCount()) dishes | \(currUser.getFollowersCount()) followers"
+        achievements.text = "Shared \(currUser.userRecipes.count) dishes | \(currUser.friendList.count) followers"
         userImage.image = currUser.image
     }
 
@@ -60,14 +89,19 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.recipeName.text = currRecipe.name
             cell.recipeImage.image = currRecipe.image
             cell.recipeBriefDescription.text = currRecipe.description
-
+            
+            if (currUser === loggedInUser) {
+                cell.likeButton.isEnabled = true
+                cell.likeButton.isHidden = false
+            }
+            // Config for cell protocol funcs
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(currUser.name)
         let chosenRecipe = feed.sortRecipeFollowing(user: currUser)[indexPath.item]
         performSegue(withIdentifier: "showRecipe", sender: chosenRecipe)
     }
@@ -81,9 +115,25 @@ class UserRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "addRecipe", sender: sender)
     }
     
+    
+    @IBAction func followButtonPressed(_ sender: Any) {
+        followButton.setTitle("Request Sent", for: .normal)
+        followButton.isEnabled = false
+        // Add friend function
+        loggedInUser.sendFriendRequest(user: guestUser)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
             dest.chosenRecipe = chosenRecipe
         }
     }
 }
+
+extension UserRecipeViewController: UserRecipeTableViewCellDelegate{
+    func didTapLikeButton(recipe: Recipe) {
+        print(recipe.name)
+        // Add like function
+    }
+}
+

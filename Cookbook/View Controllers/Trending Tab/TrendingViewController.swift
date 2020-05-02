@@ -46,6 +46,14 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
             cell.recipeImage.image = currRecipe.image
             cell.recipeBriefDescription.text = currRecipe.description
             
+            if (currRecipe.isLikedBy(user: feed.getCurrUser()!)) {
+                cell.likeButton.setImage(UIImage(named: "heart-4"), for: .disabled)
+                cell.likeButton.isEnabled = false
+            }
+            
+            // Config for cell protocol funcs
+            cell.delegate = self
+            
             return cell
         }
         return UITableViewCell()
@@ -60,5 +68,11 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         if let dest = segue.destination as? RecipeViewController, let chosenRecipe = sender as? Recipe  {
             dest.chosenRecipe = chosenRecipe
         }
+    }
+}
+
+extension TrendingViewController: TrendingTableViewCellDelegate {
+    func didTapLikeButton(recipe: Recipe) {
+        recipe.owner?.beLiked(byUser: feed.getCurrUser()!, theRecipe: recipe)
     }
 }
