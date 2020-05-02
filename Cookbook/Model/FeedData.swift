@@ -184,6 +184,10 @@ class Recipe {
         return false
     }
     
+    func setDateEntry(date: Date) {
+        dateEntry = date
+    }
+    
 }
 
 class FeedData {
@@ -299,8 +303,9 @@ class FeedData {
     // DUMMY DATA
     init() {
         // Initialize dummy data
-        recipe2.liked = [tramnguyen, anton]
-        recipe4.liked = [tramnguyen]
+        recipe1.setDateEntry(date: Date(timeIntervalSinceNow: -1600))
+        recipe2.setDateEntry(date: Date(timeIntervalSinceNow: -16000))
+        recipe3.setDateEntry(date: Date(timeIntervalSinceNow: -800))
         
         tramnguyen.addRecipe(recipe: recipe3) // "Crispy Spring Rolls"3
         anton.addRecipe(recipe: recipe2) // "Crispy Chicken Wings"2

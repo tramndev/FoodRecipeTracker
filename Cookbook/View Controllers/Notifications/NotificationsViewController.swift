@@ -63,7 +63,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             }
             return cell
         } else if tableView == notificationsTableView, let cell = tableView.dequeueReusableCell(withIdentifier: "notifications", for: indexPath) as? NotificationsTableViewCell {
-            if let l = likes {
+            if let l = likes?.sorted(by: { $0.timeStamp > $1.timeStamp}) {
                 let user = l[indexPath.row].user
                 let recipe = l[indexPath.row].recipe
                 let timeStamp = l[indexPath.row].timeStamp
